@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF96A666-355D-4F47-AD9D-C0CAB8089D2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2C61127D-8B30-4435-8400-44ED4A000DB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetMarket.WebApp", "InternetMarket.WebApp\InternetMarket.WebApp.csproj", "{B4F0F6D8-6A93-479E-AF6A-7F24BA66156D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4F0F6D8-6A93-479E-AF6A-7F24BA66156D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4F0F6D8-6A93-479E-AF6A-7F24BA66156D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4F0F6D8-6A93-479E-AF6A-7F24BA66156D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4F0F6D8-6A93-479E-AF6A-7F24BA66156D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B4F0F6D8-6A93-479E-AF6A-7F24BA66156D} = {FF96A666-355D-4F47-AD9D-C0CAB8089D2D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39D168C0-B346-4610-8F41-DC559BD0BE9B}
+	EndGlobalSection
+EndGlobal
