@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2C61127D-8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetMarket.WebApp", "InternetMarket.WebApp\InternetMarket.WebApp.csproj", "{B4F0F6D8-6A93-479E-AF6A-7F24BA66156D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetMarket.Core", "InternetMarket.Core\InternetMarket.Core.csproj", "{0F0EBAFC-30BD-452E-BBF7-F87E16A898B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetMarket.Core", "InternetMarket.Core\InternetMarket.Core.csproj", "{0F0EBAFC-30BD-452E-BBF7-F87E16A898B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetMarket.Infrastructure", "InternetMarket.Infrastructure\InternetMarket.Infrastructure.csproj", "{55D2D093-1269-4CA3-9045-7FA61C0B69B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetMarket.Infrastructure", "InternetMarket.Infrastructure\InternetMarket.Infrastructure.csproj", "{55D2D093-1269-4CA3-9045-7FA61C0B69B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetMarket.Domain", "InternetMarket.Domain\InternetMarket.Domain.csproj", "{A2CBD162-7095-4AC7-8A0E-8B593B22F933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetMarket.Domain", "InternetMarket.Domain\InternetMarket.Domain.csproj", "{A2CBD162-7095-4AC7-8A0E-8B593B22F933}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

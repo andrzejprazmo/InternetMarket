@@ -10,7 +10,7 @@ namespace InternetMarket.Infrastructure.Providers
 {
     public interface IDatabaseConnectionProvider
     {
-        SqlConnection GetAdwentureWorksConnection();
+        SqlConnection GetNorthwindConnection();
     }
     public class DatabaseConnectionProvider : IDatabaseConnectionProvider
     {
@@ -19,9 +19,9 @@ namespace InternetMarket.Infrastructure.Providers
         {
             _configuration = configuration;
         }
-        public SqlConnection GetAdwentureWorksConnection()
+        public SqlConnection GetNorthwindConnection()
         {
-            return new SqlConnection(_configuration.GetConnectionString("AdwentureWorks"));
+            return new SqlConnection(_configuration["ConnectionStrings:Northwind"]);
         }
     }
 }

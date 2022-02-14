@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace InternetMarket.Core.Common.Interfaces
 {
-    public interface IPersonRepository
+    public interface ICustomerRepository
     {
-        Task<Person> GetPersonById(int personId);
+        Task<Customer> GetCustomerById(string customerId);
     }
 }
