@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace InternetMarket.WebApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/customer")]
     [ApiController]
     public class CustomerController : ControllerBase
     {

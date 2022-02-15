@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
+using InternetMarket.Core.OldFashion;
 
 namespace InternetMarket.Core.IoC
 {
@@ -14,7 +15,15 @@ namespace InternetMarket.Core.IoC
         {
             serviceCollection.AddMediatR(typeof(ServiceCollectionExtensions).Assembly);
 
-            return serviceCollection;
+
+            #region Old fashion
+
+            serviceCollection.AddTransient<IPersonService, PersonService>();
+
+			#endregion
+
+
+			return serviceCollection;
         }
     }
 }

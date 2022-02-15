@@ -25,6 +25,10 @@ namespace InternetMarket.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCore();
+
+            services.AddInfrastructure();
+
             services.AddControllers();
 
             services.AddSwaggerGen(swagger =>
@@ -32,8 +36,6 @@ namespace InternetMarket.WebApp
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "Internet Market API", Version = "v1" });
             });
 
-            services.AddCore();
-            services.AddInfrastructure();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -45,7 +47,6 @@ namespace InternetMarket.WebApp
                 app.UseSwaggerUI(swagger =>
                 {
                     swagger.SwaggerEndpoint("/swagger/v1/swagger.json", "Some app");
-                    swagger.RoutePrefix = "swagger";
                 });
             }
 

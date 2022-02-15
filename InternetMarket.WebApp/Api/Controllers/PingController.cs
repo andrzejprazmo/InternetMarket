@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using InternetMarket.Core.OldFashion;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,20 @@ namespace InternetMarket.WebApp.Api.Controllers
     [ApiController]
     public class PingController : ControllerBase
     {
-        [HttpGet]
+        private readonly IPersonService _personService; // Old fashion
+
+		public PingController(IPersonService personService)
+		{
+			_personService = personService;
+		}
+
+		[HttpGet]
         [Route("index")]
         public ActionResult<string> Index()
         {
-            return Ok("PING");
+            string result = _personService.Foo();
+            
+            return Ok(result);
         }
     }
 
