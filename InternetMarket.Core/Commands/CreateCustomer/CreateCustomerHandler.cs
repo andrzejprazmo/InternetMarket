@@ -2,6 +2,7 @@
 using InternetMarket.Core.Common.Contracts;
 using InternetMarket.Core.Common.Interfaces;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,36 +15,46 @@ namespace InternetMarket.Core.Commands.CreateCustomer
     public class CreateCustomerHandler : IRequestHandler<CreateCustomerRequest, CommandResult<string>>
     {
         private readonly ICustomerRepository _customerRepository;
-
-        public CreateCustomerHandler(ICustomerRepository customerRepository)
+        private readonly ILogger<CreateCustomerHandler> _logger;
+        public CreateCustomerHandler(ICustomerRepository customerRepository, ILogger<CreateCustomerHandler> logger)
         {
             _customerRepository = customerRepository;
+            _logger = logger;
         }
 
         public async Task<CommandResult<string>> Handle(CreateCustomerRequest request, CancellationToken cancellationToken)
         {
-            var validationResult = await Validate(request);
-            if (validationResult.Failed)
+            try
             {
-                return validationResult;
+                var validationResult = await Validate(request);
+                if (validationResult.Failed)
+                {
+                    return validationResult;
+                }
+                string customerId = await _customerRepository.CreateCustomer(new Domain.Entities.Customer
+                {
+                    Id = request.Id,
+                    Address = request.Address,
+                    City = request.City,
+                    CompanyName = request.CompanyName,
+                    ContactName = request.ContactName,
+                    ContactTitle = request.ContactTitle,
+                    Country = request.Country,
+                    Fax = request.Fax,
+                    Phone = request.Phone,
+                    PostalCode = request.PostalCode
+                });
+                return new CommandResult<string>
+                {
+                    Value = customerId,
+                };
+
             }
-            string customerId = await _customerRepository.CreateCustomer(new Domain.Entities.Customer 
+            catch (Exception e)
             {
-                Id = request.Id,
-                Address = request.Address,
-                City = request.City,
-                CompanyName = request.CompanyName,
-                ContactName = request.ContactName,
-                ContactTitle = request.ContactTitle,
-                Country = request.Country,
-                Fax = request.Fax,
-                Phone = request.Phone,
-                PostalCode = request.PostalCode
-            });
-            return new CommandResult<string>
-            {
-                Value = customerId,
-            };
+                _logger.LogError(e, "System error", request);
+                return new CommandResult<string>(e);
+            }
         }
 
         private async Task<CommandResult<string>> Validate(CreateCustomerRequest request)

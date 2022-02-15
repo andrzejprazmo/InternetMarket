@@ -18,9 +18,18 @@ namespace InternetMarket.Core.Common
     }
     public class CommandResult
     {
-        public IList<CommandError> Errors { get; } = new List<CommandError>();
+        public IList<CommandError> Errors { get; }
 
         public bool Failed => Errors.Any();
+
+        public CommandResult()
+        {
+            Errors = new List<CommandError>();
+        }
+        public CommandResult(Exception e)
+        {
+            Errors.Add(new CommandError(-1, "System error"));
+        }
 
         public void AddError(int errorCode, string errorMessage)
         {
@@ -35,5 +44,17 @@ namespace InternetMarket.Core.Common
     public class CommandResult<T> : CommandResult
     {
         public T Value { get; set; }
+
+        public CommandResult()
+            : base()
+        {
+
+        }
+
+        public CommandResult(Exception e)
+            : base(e)
+        {
+
+        }
     }
 }
