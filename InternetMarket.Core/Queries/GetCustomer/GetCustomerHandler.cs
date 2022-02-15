@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace InternetMarket.Core.Queries.GetCustomerById
+namespace InternetMarket.Core.Queries.GetCustomer
 {
-    public class GetCustomerByIdHandler : IRequestHandler<GetCustomerByIdRequest, CustomerContract>
+    public class GetCustomerdHandler : IRequestHandler<GetCustomerRequest, CustomerContract>
     {
         private readonly ICustomerRepository _customerRepository;
-        public GetCustomerByIdHandler(ICustomerRepository customerRepository)
+        public GetCustomerdHandler(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
-        public async Task<CustomerContract> Handle(GetCustomerByIdRequest request, CancellationToken cancellationToken)
+        public async Task<CustomerContract> Handle(GetCustomerRequest request, CancellationToken cancellationToken)
         {
             var customer = await _customerRepository.GetCustomerById(request.CustomerId);
             return new CustomerContract

@@ -17,11 +17,43 @@ namespace InternetMarket.Infrastructure.Repositories
         {
             _databaseConnectionProvider = databaseConnectionProvider;
         }
+
+        public async Task<string> CreateCustomer(Customer customer)
+        {
+            using (var connection = _databaseConnectionProvider.GetNorthwindConnection())
+            {
+                string sqlQuery = @"INSERT INTO [dbo].[Customers]
+                       ([CustomerID]
+                       ,[CompanyName]
+                       ,[ContactName]
+                       ,[ContactTitle]
+                       ,[Address]
+                       ,[City]
+                       ,[PostalCode]
+                       ,[Country]
+                       ,[Phone]
+                       ,[Fax])
+                 VALUES
+                       (@Id
+                       ,@CompanyName
+                       ,@ContactName
+                       ,@ContactTitle
+                       ,@Address
+                       ,@City
+                       ,@PostalCode
+                       ,@Country
+                       ,@Phone
+                       ,@Fax);
+                SELECT @Id";
+                return await connection.QuerySingleAsync<string>(sqlQuery, customer);
+            }
+        }
+
         public async Task<Customer> GetCustomerById(string customerId)
         {
             using (var connection = _databaseConnectionProvider.GetNorthwindConnection())
             {
-                string sqlQuery = @"SELECT TOP (1000) [CustomerID] AS Id
+                string sqlQuery = @"SELECT TOP (1) [CustomerID] AS Id
                       ,[CompanyName]
                       ,[ContactName]
                       ,[ContactTitle]
@@ -33,7 +65,7 @@ namespace InternetMarket.Infrastructure.Repositories
                       ,[Phone]
                       ,[Fax]
                   FROM [dbo].[Customers] WHERE [CustomerID] = @CustomerId";
-                return await connection.QuerySingleAsync<Customer>(sqlQuery, new { CustomerId = customerId });
+                return await connection.QuerySingleOrDefaultAsync<Customer>(sqlQuery, new { CustomerId = customerId });
             }
         }
     }

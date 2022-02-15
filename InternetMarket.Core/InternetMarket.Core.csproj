@@ -14,8 +14,4 @@
     <ProjectReference Include="..\InternetMarket.Domain\InternetMarket.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
-
 </Project>

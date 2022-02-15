@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InternetMarket.Core.Queries.GetCustomerById
+namespace InternetMarket.Core.Queries.GetCustomerOrders
 {
-    public class GetCustomerByIdRequest : IRequest<CustomerContract>
+    public class GetCustomerOrdersRequest : IRequest<CustomerOrdersContract>
     {
         public string CustomerId { get; private set; }
-        public GetCustomerByIdRequest(string customerId)
+        public GetCustomerOrdersRequest(string customerId)
         {
             CustomerId = customerId;
         }

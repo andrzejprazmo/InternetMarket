@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InternetMarket.Core.Common.Contracts
+namespace InternetMarket.Domain.Entities
 {
-    public class OrderContract
+    public class Order
     {
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }

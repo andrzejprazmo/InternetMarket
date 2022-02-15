@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace InternetMarket.Core.Common.Interfaces
 {
-    public interface ICustomerRepository
+    public interface IOrderRepository
     {
-        Task<Customer> GetCustomerById(string customerId);
-
-        Task<string> CreateCustomer(Customer customer);
+        Task<IEnumerable<Order>> GetOrdersByCustomer(string customerId);
     }
 }

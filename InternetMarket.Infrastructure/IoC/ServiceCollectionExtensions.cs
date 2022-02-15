@@ -15,6 +15,7 @@ namespace InternetMarket.Infrastructure.IoC
         public static IServiceCollection AddInfrastructure(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<ICustomerRepository, CustomerRepository>();
+            serviceCollection.AddTransient<IOrderRepository, OrderRepository>();
             serviceCollection.AddTransient<IDatabaseConnectionProvider, DatabaseConnectionProvider>();
 
             return serviceCollection;

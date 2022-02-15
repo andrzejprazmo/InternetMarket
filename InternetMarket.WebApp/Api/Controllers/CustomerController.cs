@@ -1,5 +1,8 @@
-﻿using InternetMarket.Core.Common.Contracts;
-using InternetMarket.Core.Queries.GetCustomerById;
+﻿using InternetMarket.Core.Commands.CreateCustomer;
+using InternetMarket.Core.Common;
+using InternetMarket.Core.Common.Contracts;
+using InternetMarket.Core.Queries.GetCustomer;
+using InternetMarket.Core.Queries.GetCustomerOrders;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +25,23 @@ namespace InternetMarket.WebApp.Api.Controllers
 
         [HttpGet]
         [Route("get-customer/{customerId}")]
-        public async Task<ActionResult<CustomerContract>> GetCustomerById(string customerId)
+        public async Task<ActionResult<CustomerContract>> GetCustomer(string customerId)
         {
-            return await _mediator.Send(new GetCustomerByIdRequest(customerId));
+            return await _mediator.Send(new GetCustomerRequest(customerId));
+        }
+
+        [HttpGet]
+        [Route("get-orders/{customerId}")]
+        public async Task<ActionResult<CustomerOrdersContract>> GetCustomerOrders(string customerId)
+        {
+            return await _mediator.Send(new GetCustomerOrdersRequest(customerId));
+        }
+
+        [HttpPost]
+        [Route("create-customer")]
+        public async Task<ActionResult<CommandResult<string>>> CreateCustomer(CreateCustomerRequest request)
+        {
+            return await _mediator.Send(request);
         }
     }
 }
