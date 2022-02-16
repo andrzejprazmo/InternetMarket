@@ -1,4 +1,5 @@
-﻿using InternetMarket.Core.OldFashion;
+﻿using InternetMarket.Core.Common.Contracts;
+using InternetMarket.Core.OldFashion;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,18 +13,18 @@ namespace InternetMarket.WebApp.Api.Controllers
     [ApiController]
     public class PingController : ControllerBase
     {
-        private readonly IPersonService _personService; // Old fashion
+        private readonly ICustomerService _customerService; // Old fashion
 
-		public PingController(IPersonService personService)
+		public PingController(ICustomerService customerService)
 		{
-			_personService = personService;
+			_customerService = customerService;
 		}
 
 		[HttpGet]
         [Route("index")]
-        public ActionResult<string> Index()
+        public async Task<ActionResult<CustomerContract>> Index()
         {
-            string result = _personService.Foo();
+            var result = await _customerService.GetCustomer("ERNSH");
             
             return Ok(result);
         }

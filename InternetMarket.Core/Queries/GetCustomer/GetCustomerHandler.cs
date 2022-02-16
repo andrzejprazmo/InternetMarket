@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace InternetMarket.Core.Queries.GetCustomer
 {
-    public class GetCustomerdHandler : IRequestHandler<GetCustomerRequest, CustomerContract>
+    public class GetCustomerHandler : IRequestHandler<GetCustomerRequest, CustomerContract>
     {
         private readonly ICustomerRepository _customerRepository;
-        public GetCustomerdHandler(ICustomerRepository customerRepository)
+        public GetCustomerHandler(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }

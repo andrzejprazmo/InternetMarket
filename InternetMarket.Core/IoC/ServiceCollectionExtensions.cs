@@ -18,7 +18,7 @@ namespace InternetMarket.Core.IoC
 
             #region Old fashion
 
-            serviceCollection.AddTransient<IPersonService, PersonService>();
+            serviceCollection.AddTransient<ICustomerService, CustomerService>();
 
 			#endregion
 
