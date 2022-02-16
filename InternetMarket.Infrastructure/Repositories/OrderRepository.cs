@@ -19,7 +19,7 @@ namespace InternetMarket.Infrastructure.Repositories
             _databaseConnectionProvider = databaseConnectionProvider;
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersByCustomer(string customerId)
+		public async Task<IEnumerable<Order>> GetOrdersByCustomer(string customerId)
         {
             using (var connection = _databaseConnectionProvider.GetNorthwindConnection())
             {
@@ -30,6 +30,28 @@ namespace InternetMarket.Infrastructure.Repositories
                       ,[ShipCity]
                   FROM [dbo].[Orders] WHERE [CustomerID] = @CustomerId";
                 return await connection.QueryAsync<Order>(sqlQuery, new { CustomerId = customerId });
+            }
+        }
+
+        public async Task<Customer> GetCustomerByOrder(int orderId)
+        {
+            using (var connection = _databaseConnectionProvider.GetNorthwindConnection())
+            {
+                string sqlQuery = @"SELECT TOP (1) [dbo].[Orders].[CustomerID] AS Id
+                      ,[CompanyName]
+                      ,[ContactName]
+                      ,[ContactTitle]
+                      ,[Address]
+                      ,[City]
+                      ,[Region]
+                      ,[PostalCode]
+                      ,[Country]
+                      ,[Phone]
+                      ,[Fax]
+                  FROM [dbo].[Customers]
+                  JOIN [dbo].[Orders] ON [dbo].[Customers].CustomerID = [dbo].[Orders].CustomerID
+                  WHERE [dbo].[Orders].OrderID = @OrderId";
+                return await connection.QuerySingleAsync<Customer>(sqlQuery, new { OrderId = orderId });
             }
         }
     }

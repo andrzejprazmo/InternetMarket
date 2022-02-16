@@ -10,5 +10,7 @@ namespace InternetMarket.Core.Common.Interfaces
     public interface IOrderRepository
     {
         Task<IEnumerable<Order>> GetOrdersByCustomer(string customerId);
+
+        Task<Customer> GetCustomerByOrder(int orderId);
     }
 }
