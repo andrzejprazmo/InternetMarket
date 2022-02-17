@@ -60,8 +60,8 @@ namespace InternetMarket.Core.Commands.CreateCustomer
         private async Task<CommandResult<string>> Validate(CreateCustomerRequest request)
         {
             var commandResult = new CommandResult<string>();
-            var customer = await _customerRepository.GetCustomerById(request.Id);
-            if (customer != null)
+            bool customerExists = await _customerRepository.IsCustomerExists(request.Id);
+            if (customerExists)
             {
                 commandResult.AddError(ErrorCodes.CustomerWithThisIdExists);
             }

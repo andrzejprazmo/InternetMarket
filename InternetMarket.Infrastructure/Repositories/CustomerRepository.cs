@@ -68,5 +68,17 @@ namespace InternetMarket.Infrastructure.Repositories
                 return await connection.QuerySingleOrDefaultAsync<Customer>(sqlQuery, new { CustomerId = customerId });
             }
         }
-    }
+
+		public async Task<bool> IsCustomerExists(string customerId)
+		{
+            using (var connection = _databaseConnectionProvider.GetNorthwindConnection())
+            {
+                string sqlQuery = @"SELECT COUNT(*)
+                  FROM [dbo].[Customers] WHERE [CustomerID] = @CustomerId";
+                var result = await connection.QuerySingleOrDefaultAsync<int>(sqlQuery, new { CustomerId = customerId });
+
+                return result > 0;
+            }
+        }
+	}
 }

@@ -12,5 +12,7 @@ namespace InternetMarket.Core.Common.Interfaces
         Task<Customer> GetCustomerById(string customerId);
 
         Task<string> CreateCustomer(Customer customer);
+
+        Task<bool> IsCustomerExists(string customerId);
     }
 }

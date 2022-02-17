@@ -61,5 +61,10 @@ namespace InternetMarket.Core.UnitTest.GetCustomerWithStub
 				PostalCode = "PostalCode"
 			});
 		}
+
+		public Task<bool> IsCustomerExists(string customerId)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
