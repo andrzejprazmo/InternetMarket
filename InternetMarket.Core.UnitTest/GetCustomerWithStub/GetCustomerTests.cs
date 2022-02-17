@@ -17,6 +17,8 @@ namespace InternetMarket.Core.UnitTest.GetCustomerWithStub
 		public async Task GetCustomer_MappingTest()
 		{
 			// Arrange
+
+
 			var sut = new GetCustomerHandler(new CustomerRepositoryStub());
 			var customerId = "TEST";
 

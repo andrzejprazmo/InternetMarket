@@ -65,6 +65,11 @@ namespace InternetMarket.Core.Commands.CreateCustomer
             {
                 commandResult.AddError(ErrorCodes.CustomerWithThisIdExists);
             }
+
+			if (string.IsNullOrWhiteSpace(request.CompanyName))
+			{
+                commandResult.AddError(ErrorCodes.CustomerCompanyNameRequired);
+            }
             return commandResult;
         }
     }

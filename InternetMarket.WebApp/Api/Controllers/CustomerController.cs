@@ -4,6 +4,7 @@ using InternetMarket.Core.Common.Contracts;
 using InternetMarket.Core.Queries.GetCustomer;
 using InternetMarket.Core.Queries.GetCustomerOrders;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,7 +28,8 @@ namespace InternetMarket.WebApp.Api.Controllers
         [Route("get-customer/{customerId}")]
         public async Task<ActionResult<CustomerContract>> GetCustomer(string customerId)
         {
-            return await _mediator.Send(new GetCustomerRequest(customerId));
+            var result = await _mediator.Send(new GetCustomerRequest(customerId));
+            return result;
         }
 
         [HttpGet]

@@ -26,6 +26,7 @@ namespace InternetMarket.Core.UnitTest.CreateCustomer
 			return new CreateCustomerRequest
 			{
 				Id = customerId,
+				CompanyName = "Some company",
 			};
 		}
 
@@ -56,6 +57,27 @@ namespace InternetMarket.Core.UnitTest.CreateCustomer
 			// Arrange
 			string customerId = "TEST";
 			var request = CreateRequest(customerId);
+			var sut = CreateSut();
+
+			CustomerRepositoryMock.Setup(m => m.IsCustomerExists(customerId)).Returns(Task.FromResult(true));
+			CustomerRepositoryMock.Setup(m => m.CreateCustomer(It.IsAny<Domain.Entities.Customer>())).Returns(Task.FromResult(customerId));
+
+			// Act
+
+			var result = await sut.Handle(request, new System.Threading.CancellationToken(false));
+
+			// Assert
+			Assert.True(result.Failed);
+			CustomerRepositoryMock.Verify(m => m.CreateCustomer(It.IsAny<Domain.Entities.Customer>()), Times.Never);
+		}
+
+		[Test]
+		public async Task CreateCustomer_NoCompanyName_ReturnsFailed()
+		{
+			// Arrange
+			string customerId = "TEST";
+			var request = CreateRequest(customerId);
+			request.CompanyName = string.Empty;
 			var sut = CreateSut();
 
 			CustomerRepositoryMock.Setup(m => m.IsCustomerExists(customerId)).Returns(Task.FromResult(true));

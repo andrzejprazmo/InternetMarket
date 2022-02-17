@@ -33,7 +33,9 @@ namespace InternetMarket.Core.UnitTest.GetCustomerWithMock
 				Phone = "Phone",
 				PostalCode = "PostalCode"
 			};
+
 			customRepositoryMock.Setup(m => m.GetCustomerById(customerId)).Returns(Task.FromResult(expectedResult));
+
 			var sut = new GetCustomerHandler(customRepositoryMock.Object);
 
 			// Act

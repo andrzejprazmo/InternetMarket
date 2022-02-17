@@ -45,6 +45,7 @@ namespace InternetMarket.Infrastructure.Repositories
                        ,@Phone
                        ,@Fax);
                 SELECT @Id";
+
                 return await connection.QuerySingleAsync<string>(sqlQuery, customer);
             }
         }
@@ -65,7 +66,7 @@ namespace InternetMarket.Infrastructure.Repositories
                       ,[Phone]
                       ,[Fax]
                   FROM [dbo].[Customers] WHERE [CustomerID] = @CustomerId";
-                return await connection.QuerySingleOrDefaultAsync<Customer>(sqlQuery, new { CustomerId = customerId });
+                return await connection.QuerySingleAsync<Customer>(sqlQuery, new { CustomerId = customerId });
             }
         }
 
